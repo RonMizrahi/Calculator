@@ -46,7 +46,7 @@ public class Calc {
 	@RequestMapping(path = "/calc", method = RequestMethod.GET)
 	@ResponseBody
 	public String userGuide() {
-		return "Please send a json format like { \"equation\":\"1+2+3\" }";
+		return "Please send a json format like { \"mathExpr\":\"1+2+3\" }";
 	}
 
 }
