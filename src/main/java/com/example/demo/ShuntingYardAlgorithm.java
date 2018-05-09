@@ -51,7 +51,7 @@ public class ShuntingYardAlgorithm {
 		boolean expectOperand = true;
 		for (int i = 0; i < tokens.length; i++) {
 
-			// Skip whitespaces
+			// Skip whitespace
 			if (tokens[i] == ' ')
 				continue;
 

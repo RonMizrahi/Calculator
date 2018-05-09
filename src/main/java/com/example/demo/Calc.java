@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class Calc {
+public class Calc { 
 
 	// This means to get the bean from spring container
 	@Autowired
@@ -24,7 +24,7 @@ public class Calc {
 			calc = calculator.calcWithJs(mathExpr.getMathExpr());
 		} catch (ScriptException e) {
 			e.printStackTrace();
-			return "Failed to parse the equation" + mathExpr.getMathExpr() + e;
+			return "Failed to parse the expression" + mathExpr.getMathExpr() + e;
 		}
 		return calc;
 	}
@@ -37,7 +37,7 @@ public class Calc {
 			calc = calculator.calcWithSyaAlgo(mathExpr.getMathExpr());
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "Failed to parse the equation" + mathExpr.getMathExpr()+ e;
+			return "Failed to parse the expression" + mathExpr.getMathExpr()+ e;
 		}
 		return calc;
 	}
