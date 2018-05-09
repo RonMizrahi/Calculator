@@ -35,7 +35,7 @@ public class Calculator {
 	public String calcWithJs(String mathExpr) throws ScriptException {
 		final ScriptEngineManager engineManager = new ScriptEngineManager();
 		final ScriptEngine engine = engineManager.getEngineByName("JavaScript");
-		System.out.println(engine.eval(mathExpr));
+		///System.out.println(engine.eval(mathExpr));
 		return engine.eval(mathExpr).toString();
 	}
 }
