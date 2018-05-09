@@ -5,9 +5,15 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Stack;
 import java.util.concurrent.LinkedBlockingQueue;
-
 import org.springframework.stereotype.Component;
 
+/**
+ * Algorithm to Parse and Solve math expression.
+ * The algorithm was invented by Edsger Dijkstra.
+ * This code works like Reverse Polish notation (PRN). 
+ * @author ronm
+ *
+ */
 @Component
 public class ShuntingYardAlgorithm {
 
@@ -42,6 +48,7 @@ public class ShuntingYardAlgorithm {
 	 */
 	public double solveMathExpr(String mathExpr) throws Exception {
 		char[] tokens = mathExpr.toCharArray();
+		boolean expectOperand = true;
 		for (int i = 0; i < tokens.length; i++) {
 
 			// Skip whitespaces
@@ -56,12 +63,21 @@ public class ShuntingYardAlgorithm {
 					sbuf.append(tokens[i++]);
 				}
 				output.add(Double.parseDouble(sbuf.toString()));
+				expectOperand = false;
 				i--;
 			}
 
 			// If Operator
 			else if (OpPrecedence.containsKey(tokens[i]))
-				pushOperator(tokens[i]);
+			{
+				if(expectOperand)
+					throw new Exception("Expected an operand but found " + tokens[i]);
+				else
+				{
+					pushOperator(tokens[i]);
+					expectOperand = true;
+				}
+			}
 			else
 				throw new Exception("Couldn't parse the equation " + tokens[i] + " isn't supported.");
 
@@ -96,8 +112,7 @@ public class ShuntingYardAlgorithm {
 			ops.push(op);
 			return;
 		} else {
-			// While top of 'ops' has same or greater precedence to current token, which is
-			// an operator.
+			// While top of 'ops' has same or greater precedence to current token.
 			while (!ops.isEmpty() && OpPrecedence.get(ops.peek()) >= OpPrecedence.get(op)) {
 				char temp = ops.pop();
 				output.add(temp);

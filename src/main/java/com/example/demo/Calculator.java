@@ -19,12 +19,13 @@ public class Calculator {
 	 * @throws Exception
 	 */
 	public String calcWithSyaAlgo(String mathExpr) throws Exception {
-		ShuntingYardAlgorithm sta=new ShuntingYardAlgorithm();
+		ShuntingYardAlgorithm sta = new ShuntingYardAlgorithm();
 		return Double.toString(sta.solveMathExpr(mathExpr));
 	}
 
 	/**
-	 * Calculate using java script engine API
+	 * Calculate using java script engine API - A scripting engine is like an
+	 * interpreter that turns script into machine code
 	 * 
 	 * @param mathExpr
 	 * @return
@@ -33,7 +34,7 @@ public class Calculator {
 	public String calcWithJs(String mathExpr) throws ScriptException {
 		final ScriptEngineManager engineManager = new ScriptEngineManager();
 		final ScriptEngine engine = engineManager.getEngineByName("JavaScript");
-		//System.out.println(engine.eval(mathExpr));
+		// System.out.println(engine.eval(mathExpr));
 		return engine.eval(mathExpr).toString();
 	}
 }
