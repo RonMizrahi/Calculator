@@ -3,13 +3,10 @@ package com.example.demo;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Calculator {
-	@Autowired
-	ShuntingYardAlgorithm sta;
 
 	public Calculator() {
 	}
@@ -22,6 +19,7 @@ public class Calculator {
 	 * @throws Exception
 	 */
 	public String calcWithSyaAlgo(String mathExpr) throws Exception {
+		ShuntingYardAlgorithm sta=new ShuntingYardAlgorithm();
 		return Double.toString(sta.solveMathExpr(mathExpr));
 	}
 
@@ -35,7 +33,7 @@ public class Calculator {
 	public String calcWithJs(String mathExpr) throws ScriptException {
 		final ScriptEngineManager engineManager = new ScriptEngineManager();
 		final ScriptEngine engine = engineManager.getEngineByName("JavaScript");
-		///System.out.println(engine.eval(mathExpr));
+		//System.out.println(engine.eval(mathExpr));
 		return engine.eval(mathExpr).toString();
 	}
 }

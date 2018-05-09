@@ -20,21 +20,25 @@ public class ShuntingYardAlgorithm {
 		OpPrecedence.put('/', 1);
 	}
 	// Operators stack
-	Stack<Character> ops = new Stack<Character>();
-	// output queue Example of 2-2*3 -> 223*-
-	Queue<Object> output = new LinkedBlockingQueue<>();
+	Stack<Character> ops;
+	// output queue Example: 2-2*3 -> 223*-
+	Queue<Object> output;
 	// stack which help to sum the output queue
-	Stack<Double> sum = new Stack<Double>();
+	Stack<Double> sum;
+
+	public ShuntingYardAlgorithm() {
+		ops = new Stack<Character>();
+		output = new LinkedBlockingQueue<>();
+		sum = new Stack<Double>();
+	}
 
 	/**
 	 * Solve the input math Expression
 	 * 
-	 * @param mathExpr
-	 *            Simple math expression
+	 * @param mathExpr Simple math expression
 	 * @usage solveTheEquation("2-2*3")
 	 * @return Answer
-	 * @throws Exception
-	 *             expression parsing error
+	 * @throws Exception expression parsing error
 	 */
 	public double solveMathExpr(String mathExpr) throws Exception {
 		char[] tokens = mathExpr.toCharArray();
@@ -47,7 +51,8 @@ public class ShuntingYardAlgorithm {
 			// If number
 			if (tokens[i] >= '0' && tokens[i] <= '9') {
 				StringBuffer sbuf = new StringBuffer();
-				while (i < tokens.length && tokens[i] >= '0' && tokens[i] <= '9' || i < tokens.length && tokens[i] == '.') {
+				while (i < tokens.length && tokens[i] >= '0' && tokens[i] <= '9'
+						|| i < tokens.length && tokens[i] == '.') {
 					sbuf.append(tokens[i++]);
 				}
 				output.add(Double.parseDouble(sbuf.toString()));
@@ -84,8 +89,7 @@ public class ShuntingYardAlgorithm {
 	/**
 	 * Push operator to ops stack
 	 * 
-	 * @param op
-	 *            Operator as char
+	 * @param op Operator as char
 	 */
 	private void pushOperator(char op) {
 		if (ops.isEmpty()) {
