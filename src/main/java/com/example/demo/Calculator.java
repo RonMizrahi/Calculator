@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
@@ -34,6 +37,12 @@ public class Calculator {
 	public String calcWithJs(String mathExpr) throws ScriptException {
 		final ScriptEngineManager engineManager = new ScriptEngineManager();
 		final ScriptEngine engine = engineManager.getEngineByName("JavaScript");
+		
+		// Security for JavaScript to avoid commands injections
+		 Pattern p = Pattern.compile("[a-zA-Z]");
+		 Matcher m = p.matcher(mathExpr);
+		 if(m.find())
+			 throw new ScriptException("ERROR Parsing mathExpr, the Expression contains letters");
 		try {
 			// Sleep to trigger the log warning
 			Thread.sleep(500);
