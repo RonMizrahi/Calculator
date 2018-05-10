@@ -18,28 +18,14 @@ public class Calc {
 	// This means URL's start with /calcjs, Post request
 	@RequestMapping(path = "/calcjs", method = RequestMethod.POST)
 	@ResponseBody // @ResponseBody means the returned String is the response
-	public String solveMathExprJS(@RequestBody MathExpression mathExpr) {
-		String calc;
-		try {
-			calc = calculator.calcWithJs(mathExpr.getMathExpr());
-		} catch (ScriptException e) {
-			e.printStackTrace();
-			return "Failed to parse the expression" + mathExpr.getMathExpr() + e;
-		}
-		return calc;
+	public String solveMathExprJS(@RequestBody MathExpression mathExpr) throws ScriptException {
+		return calculator.calcWithJs(mathExpr.getMathExpr());
 	}
 
 	@RequestMapping(path = "/calc", method = RequestMethod.POST)
 	@ResponseBody
-	public String solveMAthExpr(@RequestBody MathExpression mathExpr) {
-		String calc;
-		try {
-			calc = calculator.calcWithSyaAlgo(mathExpr.getMathExpr());
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "Failed to parse the expression" + mathExpr.getMathExpr()+ e;
-		}
-		return calc;
+	public String solveMAthExpr(@RequestBody MathExpression mathExpr) throws Exception {
+		return calculator.calcWithSyaAlgo(mathExpr.getMathExpr());
 	}
 
 	@RequestMapping(path = "/calc", method = RequestMethod.GET)
