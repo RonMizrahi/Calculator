@@ -21,7 +21,7 @@ public class RunTimeMonitor {
 		startRunTime = System.currentTimeMillis();
 	}
 
-	@After("within(com.example.demo.*)")
+	@After("within(com.example.demo..*)")
 	public void monitorFunctionRunTime(JoinPoint joinPoint) {
 		long endRunTime = System.currentTimeMillis() - startRunTime;
 		System.out.println("Debug: Runtime of " + joinPoint.getSignature().getName() + " = " + endRunTime);

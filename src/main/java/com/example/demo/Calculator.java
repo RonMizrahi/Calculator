@@ -14,8 +14,8 @@ public class Calculator {
 	/**
 	 * Calculate the math expression using ShuntingYard Algorithm
 	 * 
-	 * @param mathExpr
-	 * @return
+	 * @param mathExpr Simple math expression
+	 * @return The calculation
 	 * @throws Exception
 	 */
 	public String calcWithSyaAlgo(String mathExpr) throws Exception {
@@ -27,14 +27,20 @@ public class Calculator {
 	 * Calculate using java script engine API - A scripting engine is like an
 	 * interpreter that turns script into machine code
 	 * 
-	 * @param mathExpr
-	 * @return
+	 * @param mathExpr Simple math expression
+	 * @return The calculation
 	 * @throws ScriptException
 	 */
 	public String calcWithJs(String mathExpr) throws ScriptException {
 		final ScriptEngineManager engineManager = new ScriptEngineManager();
 		final ScriptEngine engine = engineManager.getEngineByName("JavaScript");
-		// System.out.println(engine.eval(mathExpr));
+		try {
+			// Sleep to trigger the log warning
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return engine.eval(mathExpr).toString();
 	}
 }

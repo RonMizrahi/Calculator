@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ShuntingYardAlgorithm {
 
+	// Valid operators
 	final static Map<Character, Integer> OpPrecedence;
 	static {
 		OpPrecedence = new HashMap<Character, Integer>();

@@ -1,5 +1,10 @@
 package com.example.demo;
 
+/**
+ * Class for parsing Json by spring
+ * @author Ron
+ *
+ */
 public class MathExpression {
 
 	//For json parsing
