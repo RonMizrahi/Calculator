@@ -10,7 +10,13 @@ import javax.script.ScriptException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+ 
 import com.mongodb.DBCollection;
+
+ 
+import interpreter.Interpreter;
+ 
+
 
 @Component
 public class Calculator {
@@ -20,6 +26,7 @@ public class Calculator {
 	public Calculator() {
 	}
 
+	
 	/**
 	 * Calculate the math expression using ShuntingYard Algorithm
 	 * 
@@ -59,8 +66,24 @@ public class Calculator {
 		return engine.eval(mathExpr).toString();
 	}
 	
-	public void setDbConnection(DbController db)
-	{
-		System.out.println("Set connection of ");
+	
+	/**
+	 * Calculate using java script engine API - A scripting engine is like an
+	 * interpreter that turns script into machine code
+	 * 
+	 * @param mathExpr Simple math expression
+	 * @return The calculation
+	 * @throws ScriptException
+	 */
+	public String calcWithInterpreter(String mathExpr) throws ScriptException {
+		
+		return String.valueOf(Interpreter.eval(mathExpr));
 	}
+
+
+	public void setDbConnection(DbController mongoDb) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
