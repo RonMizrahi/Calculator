@@ -6,11 +6,17 @@ import java.util.regex.Pattern;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.mongodb.DBCollection;
 
 @Component
 public class Calculator {
 
+	private DbController dbcontroller;
+	 
 	public Calculator() {
 	}
 
@@ -51,5 +57,10 @@ public class Calculator {
 			e.printStackTrace();
 		}
 		return engine.eval(mathExpr).toString();
+	}
+	
+	public void setDbConnection(DbController db)
+	{
+		System.out.println("Set connection of ");
 	}
 }

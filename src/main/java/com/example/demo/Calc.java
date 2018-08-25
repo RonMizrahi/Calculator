@@ -33,5 +33,5 @@ public class Calc {
 	public String userGuide() {
 		return "Please send a json format like { \"mathExpr\":\"1+2+3\" }";
 	}
-
+	
 }
