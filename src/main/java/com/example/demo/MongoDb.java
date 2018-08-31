@@ -2,6 +2,7 @@ package com.example.demo;
  
 
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
  
 import org.bson.Document;
@@ -14,7 +15,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import Database.User;
-
+//@Primary
 @Component
 public class MongoDb implements DbController {
 

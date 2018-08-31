@@ -18,12 +18,12 @@ public class Calc {
 
 	// This means to get the bean from spring container
 	@Autowired
-	Calculator calculator;
+	private Calculator calculator;
 	
 	@Autowired
-	DbController database;
+	private DbController database;
 	
-	// This means URL's start with /calcjs, Post request
+	// This means URL's start with /calcjs, Post request js Algo
 	@RequestMapping(path = "/calcjs", method = RequestMethod.POST)
 	@ResponseBody // @ResponseBody means the returned String is the response
 	public String solveMathExprJS(@RequestBody MathExpression mathExpr) throws ScriptException {
@@ -33,15 +33,17 @@ public class Calc {
 		return evalMathExpr;
 	}
 
+	// This means URL's start with /calc, Post request Sya Algo
 	@RequestMapping(path = "/calc", method = RequestMethod.POST)
 	@ResponseBody
-	public String solveMAthExpr(@RequestBody MathExpression mathExpr) throws Exception {
+	public String solveSyaAlgoMAthExpr(@RequestBody MathExpression mathExpr) throws Exception {
 		String strMathExpr = mathExpr.getMathExpr();
 		String evalMathExpr = calculator.calcWithSyaAlgo(strMathExpr);
 		database.setAttribute(strMathExpr, evalMathExpr);
 		return evalMathExpr;
 	}
 	
+	// This means URL's start with /calcInterp, Post request Interpreter Algo
 	@RequestMapping(path = "/calcInterp", method = RequestMethod.POST)
 	@ResponseBody
 	public String solveMAthExprcalcInterpreter(@RequestBody MathExpression mathExpr) throws Exception {
@@ -53,13 +55,15 @@ public class Calc {
 		return evalMathExpr;
 	}
 	
-	@RequestMapping(path = "/searchCalc", method = RequestMethod.POST)
+	// This means URL's start with /searchDB, Post request /search answer in DB
+	@RequestMapping(path = "/searchDB", method = RequestMethod.POST)
 	@ResponseBody
-	public String searchCalc(@RequestBody MathExpression mathExpr) throws Exception {
+	public String searchInDB(@RequestBody MathExpression mathExpr) throws Exception {
  		return database.search(mathExpr.getMathExpr());
 	
 	}
 
+	// This means URL's start with /calc, get request user guide
 	@RequestMapping(path = "/calc", method = RequestMethod.GET)
 	@ResponseBody
 	public String userGuide() {

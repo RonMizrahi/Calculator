@@ -17,13 +17,17 @@ import org.json.simple.JSONObject;
 public class HttpPostReq 
 {
 
-	private String restUrl="http://localhost:8080/calc";
+	private String restUrl="http://localhost:8080";
 	 
     public HttpPostReq()
     {
 
     }
     
+    public void setPostReuest(String postType) {
+    	restUrl = "http://localhost:8080/" + postType;
+   
+    }
     
     public String sendPostRequest(String expr) {
        

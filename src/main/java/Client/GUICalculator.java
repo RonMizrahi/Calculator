@@ -17,5 +17,10 @@ public class GUICalculator implements ICalculatorGUI {
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void print(String str) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

@@ -22,14 +22,14 @@ public class DemoApplication {
 	RunTimeMonitor monitor;
 
 	public static void main(String[] args) throws InterruptedException {
+		
 		ConfigurableApplicationContext context = SpringApplication.run(DemoApplication.class, args);
 		Calculator calculator = context.getBean(Calculator.class);
-		calculator.setDbConnection(context.getBean(MongoDb.class));
-		 
+		//calculator.setDbConnection(context.getBean(MongoDb.class));
+		calculator.setDbConnection(context.getBean(LocalDb.class));
 		
-	 TimeUnit.SECONDS.sleep(4);
- 
-	 new java.lang.Thread(new Client()).start();
-		
+		TimeUnit.SECONDS.sleep(4);
+		new java.lang.Thread(new Client()).start();
+
 	}
 }

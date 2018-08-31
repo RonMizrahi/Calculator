@@ -81,9 +81,8 @@ public class Calculator {
 	}
 
 
-	public void setDbConnection(DbController mongoDb) {
-		// TODO Auto-generated method stub
-		
+	public void setDbConnection(DbController dbController) {
+		this.dbcontroller = dbController;
 	}
 
 }

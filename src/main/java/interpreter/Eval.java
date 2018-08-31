@@ -5,7 +5,7 @@ import java.util.StringTokenizer;
 
 public class Eval {
 
-	public static int EvalMathExpr(String strExpr){
+	public static double EvalMathExpr(String strExpr){
 		
 		Stack<MathExpression> stk = new Stack<>();
 		String[] Tokens = strExpr.split(" ");
@@ -33,7 +33,7 @@ public class Eval {
 		return ans;
 	}
 	
-	public static int inEvalMathExpr(String strExpr){
+	public static double inEvalMathExpr(String strExpr){
 		
 		Stack<MathExpression> stk = new Stack<>();
 		String[] Tokens = strExpr.split("\\s+");
@@ -66,7 +66,7 @@ public class Eval {
 		return ans;
 	}
 	
-	public static int inTreeEvalMathExpr(String strExpr){
+	public static double inTreeEvalMathExpr(String strExpr){
 		
 		Stack<MathExpression> stk = new Stack<>();
 		String[] Tokens = strExpr.split("\\s+");

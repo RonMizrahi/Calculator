@@ -6,4 +6,6 @@ public interface ICalculatorGUI {
 
 	public void printResult(String result);
 
+	public void print(String str);
+	
 }

@@ -22,4 +22,11 @@ public class CmdCalculator implements ICalculatorGUI{
 		
 	}
 
+
+	@Override
+	public void print(String str) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
