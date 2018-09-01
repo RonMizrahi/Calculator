@@ -10,7 +10,7 @@ public class Mul implements MathExpression {
 	}
 
 	@Override
-	public int interpret() {
+	public double interpret() {
 		return this.leftMathExpression.interpret() * this.rightMathExpression.interpret();
 	}
 

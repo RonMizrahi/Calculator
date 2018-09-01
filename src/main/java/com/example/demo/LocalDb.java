@@ -1,22 +1,23 @@
 package com.example.demo;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
-
-import Database.IUser.UserName;
-import Database.User;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-@Primary
 @Component
 public class LocalDb implements DbController {
 
 	private final String folderPath = "C:\\LocalDb";
+
+	public LocalDb() {
+		// Makes the DB folder if not exists
+		File f = new File(folderPath);
+		if (!f.exists())
+			f.mkdirs();
+	}
 
 	public void setAttribute(String mathExpr, String result) {
 		// File file = new File(folderPath + File.pathSeparator + mathExpr);

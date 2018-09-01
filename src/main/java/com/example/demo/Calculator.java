@@ -17,8 +17,6 @@ import interpreter.Interpreter;
 @Component
 public class Calculator {
 
-	private DbController dbcontroller;
-
 	public Calculator() {
 	}
 
@@ -72,10 +70,6 @@ public class Calculator {
 	public String calcWithInterpreter(String mathExpr) throws ScriptException {
 
 		return String.valueOf(Interpreter.eval(mathExpr));
-	}
-
-	public void setDbConnection(DbController dbController) {
-		this.dbcontroller = dbController;
 	}
 
 }

@@ -13,20 +13,22 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.simple.JSONObject;
+
+import Database.User;
  
 public class HttpPostReq 
 {
 
-	private String restUrl="http://localhost:8080";
-	 
-    public HttpPostReq()
+	private String restUrl;
+	private User clientUser;
+    public HttpPostReq(User clientUser)
     {
-
+    	this.clientUser=clientUser;
     }
     
     public void setPostReuest(String postType) {
-    	restUrl = "http://localhost:8080/" + postType;
-   
+    	restUrl = clientUser.getIpaddress()+":"+clientUser.getPort()+"/"+postType;
+    	
     }
     
     public String sendPostRequest(String expr) {
@@ -34,9 +36,9 @@ public class HttpPostReq
         JSONObject user=new JSONObject();
 		user.put("mathExpr", expr); 
         String jsonData=user.toString();
-        HttpPostReq httpPostReq=new HttpPostReq();
-        HttpPost httpPost=httpPostReq.createConnectivity(restUrl , "", "");
-        return httpPostReq.executeReq( jsonData, httpPost);   	
+     
+        HttpPost httpPost= createConnectivity(restUrl , "", "");
+        return  executeReq( jsonData, httpPost);   	
     }
     
     private HttpPost createConnectivity(String restUrl, String username, String password)

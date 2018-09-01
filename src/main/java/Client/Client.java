@@ -3,12 +3,15 @@ package Client;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+import Database.User;
+
 public class Client extends Thread {
 
 	private ICalculatorGUI UiCalculator;
-
-	public Client() {
-
+	private User clientUser;
+	
+	public Client(User clientUser) {
+		this.clientUser = clientUser;
 	}
 
 	public void run() {
@@ -20,7 +23,7 @@ public class Client extends Thread {
 
 	private void startCalculate() {
 
-		HttpPostReq postReq = new HttpPostReq();
+		HttpPostReq postReq = new HttpPostReq(clientUser);
 		String calcExpr = UiCalculator.getUserInputToCalculate();
 		while (!calcExpr.equals("exit")) {
 
@@ -37,7 +40,7 @@ public class Client extends Thread {
 			UiCalculator.printResult(result);
 			calcExpr = UiCalculator.getUserInputToCalculate();
 		}
-
+		UiCalculator.print("client exit");
 	}
 
 	private String choosePostType() {

@@ -7,7 +7,7 @@ public class Eval {
 	public static double EvalMathExpr(String strExpr) {
 
 		Stack<MathExpression> stk = new Stack<>();
-		String[] Tokens = strExpr.split(" ");
+		String[] Tokens = strExpr.split("\\s+");
 
 		for (String token : Tokens) {
 
@@ -15,7 +15,7 @@ public class Eval {
 				MathExpression rightExpr = stk.pop();
 				MathExpression leftExpr = stk.pop();
 				MathExpression operator = Operator.getOperator(token, leftExpr, rightExpr);
-				int result = operator.interpret();
+				double result = operator.interpret();
 				stk.push(new Number(result));
 
 			}
@@ -26,9 +26,7 @@ public class Eval {
 			}
 
 		}
-		int ans = stk.pop().interpret();
-		System.out.println("(" + strExpr + ") = " + ans);
-
+		double ans = stk.pop().interpret();
 		return ans;
 	}
 
@@ -37,7 +35,6 @@ public class Eval {
 		Stack<MathExpression> stk = new Stack<>();
 		String[] Tokens = strExpr.split("\\s+");
 		boolean rightNum = false;
-		;
 		String op = "";
 		for (String token : Tokens) {
 
@@ -54,14 +51,13 @@ public class Eval {
 					MathExpression rightExpr = stk.pop();
 					MathExpression leftExpr = stk.pop();
 					MathExpression operator = Operator.getOperator(op, leftExpr, rightExpr);
-					int result = operator.interpret();
+					double result = operator.interpret();
 					stk.push(new Number(result));
 				}
 			}
 
 		}
-		int ans = stk.pop().interpret();
-		System.out.println("(" + strExpr + ") = " + ans);
+		double ans = stk.pop().interpret();
 
 		return ans;
 	}
@@ -71,7 +67,6 @@ public class Eval {
 		Stack<MathExpression> stk = new Stack<>();
 		String[] Tokens = strExpr.split("\\s+");
 		boolean rightNum = false;
-		;
 		String op = "";
 
 		for (String token : Tokens) {
@@ -89,14 +84,13 @@ public class Eval {
 					MathExpression rightExpr = stk.pop();
 					MathExpression leftExpr = stk.pop();
 					MathExpression operator = Operator.getOperator(op, leftExpr, rightExpr);
-					int result = operator.interpret();
+					double result = operator.interpret();
 					stk.push(new Number(result));
 				}
 			}
 
 		}
-		int ans = stk.pop().interpret();
-		System.out.println("(" + strExpr + ") = " + ans);
+		double ans = stk.pop().interpret();
 
 		return ans;
 	}

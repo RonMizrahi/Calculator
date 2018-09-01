@@ -9,13 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class Calc {
+public class CalculatorApi {
 
 	// This means to get the bean from spring container
 	@Autowired
 	private Calculator calculator;
 
-	@Autowired
 	private DbController database;
 
 	// This means URL's start with /calcjs, Post request js Algo
@@ -65,4 +64,8 @@ public class Calc {
 		return "Please send a json format like { \"mathExpr\":\"1+2+3\" }";
 	}
 
+	public void setDbConnection(DbController database) {
+		this.database = database;
+	}
+	
 }

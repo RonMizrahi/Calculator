@@ -42,7 +42,7 @@ public final class User {
 		return new Builder();
 	}
 
-	public static class Builder implements IpAddress, Port, UserName, Password, Build {
+	public static class Builder implements IpAddress, Port, Build {
 
 		private String ipaddress;
 		private String port;
@@ -56,7 +56,7 @@ public final class User {
 		}
 
 		@Override
-		public UserName Port(String port) {
+		public Builder Port(String port) {
 			this.port = port;
 			return this;
 		}

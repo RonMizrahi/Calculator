@@ -8,22 +8,14 @@ public interface IUser {
 	}
 
 	public interface Port {
-		public UserName Port(String Port);
+		public Build Port(String Port);
 	}
 
-	public interface UserName {
-		public Password UserName(String UserName);
-	}
-
-	public interface Password {
-		public Build Password(String Password);
-	}
 
 	public interface Build {
+		public Builder Port(String UserName);
 		public Builder UserName(String UserName);
-
 		public Builder Password(String Password);
-
 		public User build();
 	}
 }

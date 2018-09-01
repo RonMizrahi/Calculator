@@ -2,14 +2,14 @@ package interpreter;
 
 public class Number implements MathExpression {
 
-	private int n;
+	private double n;
 
-	public Number(int n) {
+	public Number(double n) {
 		this.n = n;
 	}
 
 	@Override
-	public int interpret() {
+	public double interpret() {
 		return n;
 	}
 
