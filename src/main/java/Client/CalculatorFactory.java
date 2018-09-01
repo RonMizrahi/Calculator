@@ -2,25 +2,27 @@ package Client;
 
 public class CalculatorFactory {
 
+	/*
+	 * UI Calculator Factory
+	 */
 	public static ICalculatorGUI getCalculator(int choise) {
-		
+
 		switch (choise) {
-		case 1:			
-			return  new ConsoleCalculator();
-			
-		case 2:			
+		case 1:
+			return new ConsoleCalculator();
+
+		case 2:
 			return new GUICalculator();
-			
-		case 3:			
+
+		case 3:
 			return new CmdCalculator();
-			
+
 		default:
 			break;
 		}
-		
-		
+
 		return null;
-		
+
 	}
-	
+
 }

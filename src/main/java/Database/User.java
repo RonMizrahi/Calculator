@@ -62,14 +62,14 @@ public final class User {
 		}
 
 		@Override
-		public Password UserName(String username) {
+		public Builder UserName(String username) {
 			this.username = username;
 			return this;
 
 		}
 
 		@Override
-		public Build Password(String password) {
+		public Builder Password(String password) {
 			this.password = password;
 			return this;
 		}

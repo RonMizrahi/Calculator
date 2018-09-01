@@ -8,9 +8,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 import org.springframework.stereotype.Component;
 
 /**
- * Algorithm to Parse and Solve math expression.
- * The algorithm was invented by Edsger Dijkstra.
- * This code works like Reverse Polish notation (PRN). 
+ * Algorithm to Parse and Solve math expression. The algorithm was invented by
+ * Edsger Dijkstra. This code works like Reverse Polish notation (PRN).
+ * 
  * @author ronm
  *
  */
@@ -69,17 +69,14 @@ public class ShuntingYardAlgorithm {
 			}
 
 			// If Operator
-			else if (OpPrecedence.containsKey(tokens[i]))
-			{
-				if(expectOperand)
+			else if (OpPrecedence.containsKey(tokens[i])) {
+				if (expectOperand)
 					throw new Exception("Expected an operand but found " + tokens[i]);
-				else
-				{
+				else {
 					pushOperator(tokens[i]);
 					expectOperand = true;
 				}
-			}
-			else
+			} else
 				throw new Exception("Couldn't parse the equation " + tokens[i] + " isn't supported.");
 
 		}

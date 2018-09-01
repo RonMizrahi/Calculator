@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
- 
+
 import com.example.demo.aspect.RunTimeMonitor;
 
 import Client.Client;
@@ -22,12 +22,12 @@ public class DemoApplication {
 	RunTimeMonitor monitor;
 
 	public static void main(String[] args) throws InterruptedException {
-		
+
 		ConfigurableApplicationContext context = SpringApplication.run(DemoApplication.class, args);
 		Calculator calculator = context.getBean(Calculator.class);
-		//calculator.setDbConnection(context.getBean(MongoDb.class));
+		// calculator.setDbConnection(context.getBean(MongoDb.class));
 		calculator.setDbConnection(context.getBean(LocalDb.class));
-		
+
 		TimeUnit.SECONDS.sleep(4);
 		new java.lang.Thread(new Client()).start();
 

@@ -31,10 +31,8 @@ public class HttpPostReq
     
     public String sendPostRequest(String expr) {
        
-
         JSONObject user=new JSONObject();
-        user.put("mathExpr", expr);
-  
+		user.put("mathExpr", expr); 
         String jsonData=user.toString();
         HttpPostReq httpPostReq=new HttpPostReq();
         HttpPost httpPost=httpPostReq.createConnectivity(restUrl , "", "");

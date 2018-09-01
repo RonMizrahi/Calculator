@@ -7,26 +7,21 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
-import org.springframework.beans.factory.annotation.Autowired;
+ 
 import org.springframework.stereotype.Component;
 
  
-import com.mongodb.DBCollection;
 
- 
 import interpreter.Interpreter;
- 
-
 
 @Component
 public class Calculator {
 
 	private DbController dbcontroller;
-	 
+
 	public Calculator() {
 	}
 
-	
 	/**
 	 * Calculate the math expression using ShuntingYard Algorithm
 	 * 
@@ -50,12 +45,12 @@ public class Calculator {
 	public String calcWithJs(String mathExpr) throws ScriptException {
 		final ScriptEngineManager engineManager = new ScriptEngineManager();
 		final ScriptEngine engine = engineManager.getEngineByName("JavaScript");
-		
+
 		// Security for JavaScript to avoid commands injections
-		 Pattern p = Pattern.compile("[a-zA-Z]");
-		 Matcher m = p.matcher(mathExpr);
-		 if(m.find())
-			 throw new ScriptException("ERROR Parsing mathExpr, the Expression contains letters");
+		Pattern p = Pattern.compile("[a-zA-Z]");
+		Matcher m = p.matcher(mathExpr);
+		if (m.find())
+			throw new ScriptException("ERROR Parsing mathExpr, the Expression contains letters");
 		try {
 			// Sleep to trigger the log warning
 			Thread.sleep(500);
@@ -65,8 +60,7 @@ public class Calculator {
 		}
 		return engine.eval(mathExpr).toString();
 	}
-	
-	
+
 	/**
 	 * Calculate using java script engine API - A scripting engine is like an
 	 * interpreter that turns script into machine code
@@ -76,10 +70,9 @@ public class Calculator {
 	 * @throws ScriptException
 	 */
 	public String calcWithInterpreter(String mathExpr) throws ScriptException {
-		
+
 		return String.valueOf(Interpreter.eval(mathExpr));
 	}
-
 
 	public void setDbConnection(DbController dbController) {
 		this.dbcontroller = dbController;

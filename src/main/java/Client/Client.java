@@ -5,36 +5,27 @@ import java.util.concurrent.TimeUnit;
 
 public class Client extends Thread {
 
-	private ICalculatorGUI calculator;
+	private ICalculatorGUI UiCalculator;
 
 	public Client() {
 
 	}
 
 	public void run() {
-
-		StartCal();
-
-	}
-
-	private void StartCal() {
-
 		printMenu();
-		calculator = getCalculator();
-		if (calculator != null)
-			Calculate();
-
+		initUICalculator();
+		if (UiCalculator != null)
+			startCalculate();
 	}
 
-	private void Calculate() {
-		HttpPostReq postReq = new HttpPostReq();
+	private void startCalculate() {
 
-		String calcExpr = calculator.calc();
+		HttpPostReq postReq = new HttpPostReq();
+		String calcExpr = UiCalculator.getUserInputToCalculate();
 		while (!calcExpr.equals("exit")) {
 
-			calculator.print("calcExpr: " + calcExpr);
+			UiCalculator.print("calcExpr: " + calcExpr);
 			String postType = choosePostType();
-
 			postReq.setPostReuest(postType);
 			String result = postReq.sendPostRequest(calcExpr);
 			try {
@@ -43,33 +34,33 @@ public class Client extends Thread {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			calculator.printResult(result);
-			calcExpr = calculator.calc();
+			UiCalculator.printResult(result);
+			calcExpr = UiCalculator.getUserInputToCalculate();
 		}
 
 	}
 
 	private String choosePostType() {
 
-		calculator.print("choose post type: ");
-		calculator.print("Type any number between 1 and 4 to choose UI");
-		calculator.print("1)calcjs - js algorithm");
-		calculator.print("2)calc - Shunting Yard Algorithm");
-		calculator.print("3)calcInterp - Interpreter algorithm");
-		calculator.print("4)searchDB - search query in DB");
+		UiCalculator.print("choose post type: ");
+		UiCalculator.print("Type any number between 1 and 4 to choose Post request type");
+		UiCalculator.print("1)calcjs - js algorithm");
+		UiCalculator.print("2)calc - Shunting Yard Algorithm");
+		UiCalculator.print("3)calcInterp - Interpreter algorithm");
+		UiCalculator.print("4)searchDB - search query in DB");
 		Scanner sc = new Scanner(System.in);
 		int selection;
 		selection = sc.nextInt();
 		String postType = "";
 		while (selection < 1 || selection > 4) {
-			calculator.print("Type a valid value");
+			UiCalculator.print("Type a valid value");
 			selection = sc.nextInt();
 		}
 		switch (selection) {
 		case 1:
 			postType = "calcjs";
 			break;
-			
+
 		case 2:
 			postType = "calc";
 			break;
@@ -88,21 +79,21 @@ public class Client extends Thread {
 		return postType;
 	}
 
-	private ICalculatorGUI getCalculator() {
+	private void initUICalculator() {
 		Scanner sc = new Scanner(System.in);
-		ICalculatorGUI calculator = null;
+
 		int selection;
 		selection = sc.nextInt();
 		while (selection != 0) {
 			if (selection >= 0 && selection <= 3) {
-				calculator = CalculatorFactory.getCalculator(selection);
+				UiCalculator = CalculatorFactory.getCalculator(selection);
 
 				break;
 			} else {
-				calculator.print("Type a valid value");
+				System.out.println("Type a valid value");
 			}
 		}
-		return calculator;
+
 	}
 
 	private void printMenu() {
