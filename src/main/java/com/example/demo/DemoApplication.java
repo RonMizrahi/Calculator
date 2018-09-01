@@ -22,11 +22,11 @@ public class DemoApplication {
 		// Not a spring way, but we did it for Stratagy design pattern.
 		CalculatorApi calculator = context.getBean(CalculatorApi.class);
 		calculator.setDbConnection(context.getBean(MongoDb.class));
-		//calculator.setDbConnection(context.getBean(LocalDb.class));
+		// calculator.setDbConnection(context.getBean(LocalDb.class));
 
 		TimeUnit.SECONDS.sleep(4);
 		// Client integrated in server code/console only for convenience
-		new Thread(new Client(new User.Builder().IpAddress("http://localhost").Port("8080").build())).start();
+		new Thread(new Client(User.builder("http://localhost", "8080").build())).start();
 
 	}
 }

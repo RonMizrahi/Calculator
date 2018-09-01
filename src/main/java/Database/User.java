@@ -38,27 +38,20 @@ public final class User {
 				+ password;
 	}
 
-	public static IpAddress builder() {
-		return new Builder();
+	public static User.Builder builder(String ipaddress, String port) {
+		return new Builder(ipaddress,port);
 	}
 
-	public static class Builder implements IpAddress, Port, Build {
+	public static class Builder implements Build {
 
 		private String ipaddress;
 		private String port;
 		private String username;
 		private String password;
 
-		@Override
-		public Port IpAddress(String ipaddress) {
+		public Builder(String ipaddress, String port) {
 			this.ipaddress = ipaddress;
-			return this;
-		}
-
-		@Override
-		public Builder Port(String port) {
 			this.port = port;
-			return this;
 		}
 
 		@Override

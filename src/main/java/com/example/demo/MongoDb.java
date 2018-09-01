@@ -22,7 +22,7 @@ public class MongoDb implements DbController {
 	}
 
 	private void configUser() {
-		user = User.builder().IpAddress("mongodb://").Port("31932").UserName("shtukelman").Password("S123456").build();
+		user = User.builder("mongodb://", "31932").UserName("shtukelman").Password("S123456").build();
 	}
 
 	private void ConnectDatabase() {
